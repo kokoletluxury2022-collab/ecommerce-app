@@ -65,15 +65,15 @@
       }
     },
     {
-      "id": "src/routes/SignUp/screens/SignUp.tsx:12:4-to-src/routes/Login/screens/Login.tsx",
+      "id": "src/routes/SignUp/screens/SignUp.tsx:20:4-to-src/routes/Login/screens/Login.tsx",
       "source": "src/routes/SignUp/screens/SignUp.tsx",
       "target": "src/routes/Login/screens/Login.tsx",
       "data": {
         "viaRoute": "/login",
         "trigger": {
           "element": "navigate('/login')",
-          "line": 12,
-          "endLine": 12,
+          "line": 20,
+          "endLine": 20,
           "column": 4,
           "endColumn": 22,
           "sourceFile": "src/routes/SignUp/screens/SignUp.tsx"
@@ -81,17 +81,49 @@
       }
     },
     {
-      "id": "src/routes/Login/screens/Login.tsx:13:4-to-src/routes/SignUp/screens/SignUp.tsx",
+      "id": "src/routes/SignUp/screens/SignUp.tsx:35:6-to-src/routes/Onboarding/screens/Onboarding.tsx",
+      "source": "src/routes/SignUp/screens/SignUp.tsx",
+      "target": "src/routes/Onboarding/screens/Onboarding.tsx",
+      "data": {
+        "viaRoute": "/onboarding",
+        "trigger": {
+          "element": "navigate('/onboarding')",
+          "line": 35,
+          "endLine": 35,
+          "column": 6,
+          "endColumn": 29,
+          "sourceFile": "src/routes/SignUp/screens/SignUp.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/Login/screens/Login.tsx:20:4-to-src/routes/SignUp/screens/SignUp.tsx",
       "source": "src/routes/Login/screens/Login.tsx",
       "target": "src/routes/SignUp/screens/SignUp.tsx",
       "data": {
         "viaRoute": "/signup",
         "trigger": {
           "element": "navigate('/signup')",
-          "line": 13,
-          "endLine": 13,
+          "line": 20,
+          "endLine": 20,
           "column": 4,
           "endColumn": 23,
+          "sourceFile": "src/routes/Login/screens/Login.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/Login/screens/Login.tsx:35:6-to-src/routes/Onboarding/screens/Onboarding.tsx",
+      "source": "src/routes/Login/screens/Login.tsx",
+      "target": "src/routes/Onboarding/screens/Onboarding.tsx",
+      "data": {
+        "viaRoute": "/onboarding",
+        "trigger": {
+          "element": "navigate('/onboarding')",
+          "line": 35,
+          "endLine": 35,
+          "column": 6,
+          "endColumn": 29,
           "sourceFile": "src/routes/Login/screens/Login.tsx"
         }
       }
