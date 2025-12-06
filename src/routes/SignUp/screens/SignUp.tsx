@@ -32,7 +32,7 @@ export const SignUp = (): JSX.Element => {
     if (error) {
       setError(error.message);
     } else {
-      navigate('/onboarding');
+      navigate('/homepage');
     }
   };
 

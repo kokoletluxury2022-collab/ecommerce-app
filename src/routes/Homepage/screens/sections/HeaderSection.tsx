@@ -1,0 +1,47 @@
+import { HeartIcon } from "lucide-react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../../../components/ui/button";
+import { Card, CardContent } from "../../../../components/ui/card";
+
+export const HeaderSection = (): JSX.Element => {
+  const navigate = useNavigate();
+
+  const handleProductClick = () => {
+    navigate('/product-details');
+  };
+
+  return (
+    <Card 
+      onClick={handleProductClick}
+      className="w-[161px] border-0 shadow-none bg-transparent cursor-pointer hover:shadow-md transition-shadow">
+      <CardContent className="p-0 flex flex-col gap-2">
+        <div className="relative w-full h-[174px] bg-primary-100 rounded-[10px] overflow-hidden">
+          <img
+            className="w-full h-full object-cover"
+            alt="Image"
+            src="https://c.animaapp.com/miuwuy0kQowZpp/img/image-4.png"
+          />
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-3 right-3 h-auto w-auto p-2 bg-primary-0 rounded-lg shadow-[0px_8px_10px_#51515140] hover:bg-primary-0"
+          >
+            <HeartIcon className="w-[18px] h-[18px] text-primary-900" />
+          </Button>
+        </div>
+
+        <div className="flex flex-col gap-[3px]">
+          <h3 className="font-b1-semibold font-[number:var(--b1-semibold-font-weight)] text-primary-900 text-[length:var(--b1-semibold-font-size)] tracking-[var(--b1-semibold-letter-spacing)] leading-[var(--b1-semibold-line-height)] [font-style:var(--b1-semibold-font-style)]">
+            Regular Fit Black
+          </h3>
+
+          <p className="text-primary-500 font-b3-medium font-[number:var(--b3-medium-font-weight)] text-[length:var(--b3-medium-font-size)] tracking-[var(--b3-medium-letter-spacing)] leading-[var(--b3-medium-line-height)] [font-style:var(--b3-medium-font-style)]">
+            $ 1,690
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
