@@ -1,16 +1,39 @@
-import { EyeOffIcon } from "lucide-react";
-import React from "react";
+import { EyeOffIcon, EyeIcon } from "lucide-react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 import { Separator } from "../../../components/ui/separator";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export const Login = (): JSX.Element => {
   const navigate = useNavigate();
+  const { signIn } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleJoinClick = () => {
     navigate('/signup');
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const { error } = await signIn(email, password);
+
+    setLoading(false);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      navigate('/onboarding');
+    }
   };
 
   return (
@@ -62,53 +85,76 @@ export const Login = (): JSX.Element => {
           It&apos;s great to see you again.
         </p>
 
-        <div className="flex flex-col gap-1 mt-[46px]">
-          <Label
-            htmlFor="email"
-            className="font-b1-medium font-[number:var(--b1-medium-font-weight)] text-primary-900 text-[length:var(--b1-medium-font-size)] tracking-[var(--b1-medium-letter-spacing)] leading-[var(--b1-medium-line-height)] [font-style:var(--b1-medium-font-style)]"
-          >
-            Email
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="Enter your email address"
-            className="h-[52px] px-5 py-3.5 rounded-[10px] border border-solid border-[#e6e6e6] font-b1-regular font-[number:var(--b1-regular-font-weight)] text-primary-400 text-[length:var(--b1-regular-font-size)] tracking-[var(--b1-regular-letter-spacing)] leading-[var(--b1-regular-line-height)] [font-style:var(--b1-regular-font-style)] placeholder:text-primary-400"
-          />
-        </div>
+        <form onSubmit={handleLogin}>
+          {error && (
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+              {error}
+            </div>
+          )}
 
-        <div className="flex flex-col gap-1 mt-[42px]">
-          <Label
-            htmlFor="password"
-            className="font-b1-medium font-[number:var(--b1-medium-font-weight)] text-primary-900 text-[length:var(--b1-medium-font-size)] tracking-[var(--b1-medium-letter-spacing)] leading-[var(--b1-medium-line-height)] [font-style:var(--b1-medium-font-style)]"
-          >
-            Password
-          </Label>
-          <div className="relative">
-            <Input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              className="h-[52px] px-5 py-3.5 pr-14 rounded-[10px] border border-solid border-[#e6e6e6] font-b1-regular font-[number:var(--b1-regular-font-weight)] text-primary-400 text-[length:var(--b1-regular-font-size)] tracking-[var(--b1-regular-letter-spacing)] leading-[var(--b1-regular-line-height)] [font-style:var(--b1-regular-font-style)] placeholder:text-primary-400"
-            />
-            <button
-              type="button"
-              className="absolute right-5 top-1/2 -translate-y-1/2"
-              aria-label="Toggle password visibility"
+          <div className="flex flex-col gap-1 mt-[46px]">
+            <Label
+              htmlFor="email"
+              className="font-b1-medium font-[number:var(--b1-medium-font-weight)] text-primary-900 text-[length:var(--b1-medium-font-size)] tracking-[var(--b1-medium-letter-spacing)] leading-[var(--b1-medium-line-height)] [font-style:var(--b1-medium-font-style)]"
             >
-              <EyeOffIcon className="w-6 h-6 text-primary-900" />
-            </button>
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email address"
+              required
+              className="h-[52px] px-5 py-3.5 rounded-[10px] border border-solid border-[#e6e6e6] font-b1-regular font-[number:var(--b1-regular-font-weight)] text-primary-900 text-[length:var(--b1-regular-font-size)] tracking-[var(--b1-regular-letter-spacing)] leading-[var(--b1-regular-line-height)] [font-style:var(--b1-regular-font-style)] placeholder:text-primary-400"
+            />
           </div>
-        </div>
 
-        <p className="mt-[36px] font-b2-regular font-[number:var(--b2-regular-font-weight)] text-primary-900 text-[length:var(--b2-regular-font-size)] tracking-[var(--b2-regular-letter-spacing)] leading-[var(--b2-regular-line-height)] [font-style:var(--b2-regular-font-style)]">
-          Forgot your password?{" "}
-          <button className="underline">Reset your password</button>
-        </p>
+          <div className="flex flex-col gap-1 mt-[42px]">
+            <Label
+              htmlFor="password"
+              className="font-b1-medium font-[number:var(--b1-medium-font-weight)] text-primary-900 text-[length:var(--b1-medium-font-size)] tracking-[var(--b1-medium-letter-spacing)] leading-[var(--b1-medium-line-height)] [font-style:var(--b1-medium-font-style)]"
+            >
+              Password
+            </Label>
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+                className="h-[52px] px-5 py-3.5 pr-14 rounded-[10px] border border-solid border-[#e6e6e6] font-b1-regular font-[number:var(--b1-regular-font-weight)] text-primary-900 text-[length:var(--b1-regular-font-size)] tracking-[var(--b1-regular-letter-spacing)] leading-[var(--b1-regular-line-height)] [font-style:var(--b1-regular-font-style)] placeholder:text-primary-400"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-5 top-1/2 -translate-y-1/2"
+                aria-label="Toggle password visibility"
+              >
+                {showPassword ? (
+                  <EyeIcon className="w-6 h-6 text-primary-900" />
+                ) : (
+                  <EyeOffIcon className="w-6 h-6 text-primary-900" />
+                )}
+              </button>
+            </div>
+          </div>
 
-        <Button className="w-full h-[54px] mt-11 bg-primary-200 hover:bg-primary-200/90 rounded-[10px] font-b1-medium font-[number:var(--b1-medium-font-weight)] text-primary-0 text-[length:var(--b1-medium-font-size)] tracking-[var(--b1-medium-letter-spacing)] leading-[var(--b1-medium-line-height)] [font-style:var(--b1-medium-font-style)]">
-          Login
-        </Button>
+          <p className="mt-[36px] font-b2-regular font-[number:var(--b2-regular-font-weight)] text-primary-900 text-[length:var(--b2-regular-font-size)] tracking-[var(--b2-regular-letter-spacing)] leading-[var(--b2-regular-line-height)] [font-style:var(--b2-regular-font-style)]">
+            Forgot your password?{" "}
+            <button type="button" className="underline">Reset your password</button>
+          </p>
+
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full h-[54px] mt-11 bg-primary-200 hover:bg-primary-200/90 rounded-[10px] font-b1-medium font-[number:var(--b1-medium-font-weight)] text-primary-0 text-[length:var(--b1-medium-font-size)] tracking-[var(--b1-medium-letter-spacing)] leading-[var(--b1-medium-line-height)] [font-style:var(--b1-medium-font-style)] disabled:opacity-50"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
+        </form>
 
         <div className="flex items-center gap-4 mt-[78px]">
           <Separator className="flex-1 bg-primary-100" />
