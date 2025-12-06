@@ -29,6 +29,41 @@
       "routes": [
         "/login"
       ]
+    },
+    {
+      "id": "src/routes/ForgotPassword/screens/ForgotPassword.tsx",
+      "label": "ForgotPassword",
+      "routes": [
+        "/forgot-password"
+      ]
+    },
+    {
+      "id": "src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "label": "VerificationCode",
+      "routes": [
+        "/verification-code"
+      ]
+    },
+    {
+      "id": "src/routes/ResetPassword/screens/ResetPassword.tsx",
+      "label": "ResetPassword",
+      "routes": [
+        "/reset-password"
+      ]
+    },
+    {
+      "id": "src/routes/Homepage/screens/Homepage.tsx",
+      "label": "Homepage",
+      "routes": [
+        "/homepage"
+      ]
+    },
+    {
+      "id": "src/routes/ProductDetails/screens/ProductDetails.tsx",
+      "label": "ProductDetails",
+      "routes": [
+        "/product/:id"
+      ]
     }
   ],
   "edges": [
@@ -81,17 +116,17 @@
       }
     },
     {
-      "id": "src/routes/SignUp/screens/SignUp.tsx:35:6-to-src/routes/Onboarding/screens/Onboarding.tsx",
+      "id": "src/routes/SignUp/screens/SignUp.tsx:35:6-to-src/routes/Homepage/screens/Homepage.tsx",
       "source": "src/routes/SignUp/screens/SignUp.tsx",
-      "target": "src/routes/Onboarding/screens/Onboarding.tsx",
+      "target": "src/routes/Homepage/screens/Homepage.tsx",
       "data": {
-        "viaRoute": "/onboarding",
+        "viaRoute": "/homepage",
         "trigger": {
-          "element": "navigate('/onboarding')",
+          "element": "navigate('/homepage')",
           "line": 35,
           "endLine": 35,
           "column": 6,
-          "endColumn": 29,
+          "endColumn": 27,
           "sourceFile": "src/routes/SignUp/screens/SignUp.tsx"
         }
       }
@@ -113,18 +148,130 @@
       }
     },
     {
-      "id": "src/routes/Login/screens/Login.tsx:35:6-to-src/routes/Onboarding/screens/Onboarding.tsx",
+      "id": "src/routes/Login/screens/Login.tsx:35:6-to-src/routes/Homepage/screens/Homepage.tsx",
       "source": "src/routes/Login/screens/Login.tsx",
-      "target": "src/routes/Onboarding/screens/Onboarding.tsx",
+      "target": "src/routes/Homepage/screens/Homepage.tsx",
       "data": {
-        "viaRoute": "/onboarding",
+        "viaRoute": "/homepage",
         "trigger": {
-          "element": "navigate('/onboarding')",
+          "element": "navigate('/homepage')",
           "line": 35,
           "endLine": 35,
           "column": 6,
-          "endColumn": 29,
+          "endColumn": 27,
           "sourceFile": "src/routes/Login/screens/Login.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/ForgotPassword/screens/ForgotPassword.tsx:12:4-to-src/routes/Login/screens/Login.tsx",
+      "source": "src/routes/ForgotPassword/screens/ForgotPassword.tsx",
+      "target": "src/routes/Login/screens/Login.tsx",
+      "data": {
+        "viaRoute": "/login",
+        "trigger": {
+          "element": "navigate('/login')",
+          "line": 12,
+          "endLine": 12,
+          "column": 4,
+          "endColumn": 22,
+          "sourceFile": "src/routes/ForgotPassword/screens/ForgotPassword.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/ForgotPassword/screens/ForgotPassword.tsx:16:4-to-src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "source": "src/routes/ForgotPassword/screens/ForgotPassword.tsx",
+      "target": "src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "data": {
+        "viaRoute": "/verification-code",
+        "trigger": {
+          "element": "navigate('/verification-code')",
+          "line": 16,
+          "endLine": 16,
+          "column": 4,
+          "endColumn": 34,
+          "sourceFile": "src/routes/ForgotPassword/screens/ForgotPassword.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/VerificationCode/screens/VerificationCode.tsx:21:4-to-src/routes/ForgotPassword/screens/ForgotPassword.tsx",
+      "source": "src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "target": "src/routes/ForgotPassword/screens/ForgotPassword.tsx",
+      "data": {
+        "viaRoute": "/forgot-password",
+        "trigger": {
+          "element": "navigate('/forgot-password')",
+          "line": 21,
+          "endLine": 21,
+          "column": 4,
+          "endColumn": 32,
+          "sourceFile": "src/routes/VerificationCode/screens/VerificationCode.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/VerificationCode/screens/VerificationCode.tsx:25:4-to-src/routes/ResetPassword/screens/ResetPassword.tsx",
+      "source": "src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "target": "src/routes/ResetPassword/screens/ResetPassword.tsx",
+      "data": {
+        "viaRoute": "/reset-password",
+        "trigger": {
+          "element": "navigate('/reset-password')",
+          "line": 25,
+          "endLine": 25,
+          "column": 4,
+          "endColumn": 31,
+          "sourceFile": "src/routes/VerificationCode/screens/VerificationCode.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/ResetPassword/screens/ResetPassword.tsx:13:4-to-src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "source": "src/routes/ResetPassword/screens/ResetPassword.tsx",
+      "target": "src/routes/VerificationCode/screens/VerificationCode.tsx",
+      "data": {
+        "viaRoute": "/verification-code",
+        "trigger": {
+          "element": "navigate('/verification-code')",
+          "line": 13,
+          "endLine": 13,
+          "column": 4,
+          "endColumn": 34,
+          "sourceFile": "src/routes/ResetPassword/screens/ResetPassword.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/ResetPassword/screens/sections/NotificationPopupSection.tsx:11:4-to-src/routes/Login/screens/Login.tsx",
+      "source": "src/routes/ResetPassword/screens/ResetPassword.tsx",
+      "target": "src/routes/Login/screens/Login.tsx",
+      "data": {
+        "viaRoute": "/login",
+        "trigger": {
+          "element": "navigate('/login')",
+          "line": 11,
+          "endLine": 11,
+          "column": 4,
+          "endColumn": 22,
+          "sourceFile": "src/routes/ResetPassword/screens/sections/NotificationPopupSection.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/routes/ProductDetails/screens/ProductDetails.tsx:37:6-to-src/routes/Homepage/screens/Homepage.tsx",
+      "source": "src/routes/ProductDetails/screens/ProductDetails.tsx",
+      "target": "src/routes/Homepage/screens/Homepage.tsx",
+      "data": {
+        "viaRoute": "/homepage",
+        "trigger": {
+          "element": "navigate('/homepage')",
+          "line": 37,
+          "endLine": 37,
+          "column": 6,
+          "endColumn": 27,
+          "sourceFile": "src/routes/ProductDetails/screens/ProductDetails.tsx"
         }
       }
     }
