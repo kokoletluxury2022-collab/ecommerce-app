@@ -10,8 +10,14 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "lib": ["esnext"],
-    "types": ["react-native", "react", "node"]
+    "lib": [
+      "esnext"
+    ],
+    "types": [
+      "react-native",
+      "react",
+      "node"
+    ]
   },
   "include": [
     "App.tsx",
@@ -20,9 +26,7 @@
     "src/contexts/**/*.ts",
     "src/contexts/**/*.tsx",
     "src/lib/supabase.ts",
-    "src/lib/woocommerce.ts",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "src/lib/woocommerce.ts"
   ],
   "exclude": [
     "node_modules",
