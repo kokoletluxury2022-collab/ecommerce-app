@@ -1,11 +1,37 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": false,
+    "skipLibCheck": true,
+    "jsx": "react-native",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "lib": ["esnext"],
+    "types": ["react-native", "react", "node"]
+  },
+  "include": [
+    "App.tsx",
+    "src/screens/**/*.ts",
+    "src/screens/**/*.tsx",
+    "src/contexts/**/*.ts",
+    "src/contexts/**/*.tsx",
+    "src/lib/supabase.ts",
+    "src/lib/woocommerce.ts",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/routes/**/*",
+    "src/components/**/*",
+    "src/index.tsx",
+    "src/screens/Splash/Splash.tsx",
+    "src/screens/Splash/index.ts",
+    "vite.config.ts",
+    "tailwind.config.js"
   ]
 }

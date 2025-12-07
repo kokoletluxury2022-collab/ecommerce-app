@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { WooProduct, CartItem } from '../lib/woocommerce';
 
 interface CartContextType {
@@ -14,14 +15,39 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+    loadCart();
+  }, []);
+
+  const loadCart = async () => {
+    try {
+      const saved = await AsyncStorage.getItem('cart');
+      if (saved) {
+        setCart(JSON.parse(saved));
+      }
+    } catch (error) {
+      console.error('Error loading cart:', error);
+    } finally {
+      setIsLoaded(true);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoaded) {
+      saveCart();
+    }
+  }, [cart, isLoaded]);
+
+  const saveCart = async () => {
+    try {
+      await AsyncStorage.setItem('cart', JSON.stringify(cart));
+    } catch (error) {
+      console.error('Error saving cart:', error);
+    }
+  };
 
   const addToCart = (product: WooProduct, quantity: number = 1) => {
     setCart((prevCart) => {
